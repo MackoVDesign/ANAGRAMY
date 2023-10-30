@@ -5,48 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Anagramy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="450">
-    <StackPanel>
-        <StackPanel.Resources>
-            <Style TargetType="TextBlock">
-                <Setter Property="Background" Value="Yellow"/>
-                <Style.Triggers>
-                    <MultiTrigger>
-                        <MultiTrigger.Conditions>
-                            <Condition Property="IsMouseOver" Value="True"/>
-                        </MultiTrigger.Conditions>
-                        <Setter Property="Background" Value="Brown"></Setter>
-                    </MultiTrigger>
-                </Style.Triggers>
-            </Style>
+        Title="Anagramy" Height="600" Width="450">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#a52b2b"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="400"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True"/>
+                        <Condition Property="IsKeyboardFocused" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="LightSeaGreen"/>
+                </MultiTrigger>
+            </Style.Triggers>
+
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Padding" Value="10"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Green"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
 
 
 
-            <Style TargetType="Label">
-                <Setter Property="Foreground" Value="Brown"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Setter Property="FontSize" Value="15"></Setter>
-            </Style>
 
-
-    
-            <Style TargetType="TextBox">
-                <Setter Property="Height" Value="25"></Setter>
-            </Style>
+    <Grid>
+        <StackPanel>
+            <TextBlock>Anagramy -  słowa zbudowane z tej samej ilości takich samych liter</TextBlock>
+            <Label>Pierwsze słowo:</Label>
+            <TextBox Name="pierwsze_slowo" Text="{Binding ElementName=IsPierwszeSlowoValid, Path= Slowo1}"></TextBox>
+            <Label>Drugie słowo:</Label>
+            <TextBox Name="drugie_slowo" Text="{Binding ElementName=IsDrugieSlowoValid, Path= Slowo2}"></TextBox>
+            <Button Height="40" Width="400" Background="#ffebcd" Foreground="#a52b2b" FontSize="20" Margin="0,15,0,10" Click="Button_Click">Sprawdź</Button>
             
-        </StackPanel.Resources>
-        <TextBlock TextWrapping="Wrap" FontSize="25" Text="Anagramy-Słowa zbudowane z tej samej ilośći takich samych liter"/>
-        <Label Content="Pierszwe słowo:"/>
-        <TextBox TextWrapping="Wrap" Text="" Width="350" HorizontalAlignment="Center"/>
-
-
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding pierwsze_slowo_p}"/>
-                </Style.Triggers>
-            </Style>
-
-        
-        
-
-    </StackPanel>
+        </StackPanel>
+    </Grid>
+    
+     
 </Window>

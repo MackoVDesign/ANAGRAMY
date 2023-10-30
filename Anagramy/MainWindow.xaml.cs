@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,11 +22,28 @@ namespace Anagramy
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+       public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            DataContext= this;  
         }
 
-      
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string slowo1 = pierwsze_slowo.Text;
+
+            string slowo2 = drugie_slowo.Text;
+
+            Anagram anagram = new Anagram(slowo1, slowo2);
+            if (anagram.Check_click())
+            {
+                MessageBox.Show("Tak są Anagramami");
+            }
+            else
+            {
+                MessageBox.Show("Nie są Anagramami");
+            }
+
+        }
     }
 }
